@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>All Posts</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,10 +13,51 @@
         h1 {
             color: #2c3e50;
         }
+        .post {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px auto;
+            width: 50%;
+            text-align: left;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .post h2 {
+            margin: 0;
+            color: #34495e;
+        }
+        .post p {
+            color: #555;
+        }
+        .create-post-button {
+        display: inline-block;
+        margin: 20px 0;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .create-post-button:hover {
+        background-color: #2980b9;
+    }
     </style>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <p>Welcome to your Django project!</p>
+    <h1>All Posts</h1>
+    <a href="/post/create" class="create-post-button">Create New Post</a>
+
+    {% if posts %}
+        {% for post in posts %}
+            <div class="post">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No posts available.</p>
+    {% endif %}
 </body>
 </html>
