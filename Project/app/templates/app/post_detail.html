@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .post-detail {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px auto;
+            width: 50%;
+            text-align: left;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .post-detail h1 {
+            color: #2c3e50;
+        }
+        .post-detail p {
+            color: #555;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="post-detail">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <a class="back-btn" href="{% url 'home' %}">Back to All Posts</a>
+
+    </div>
+</body>
+</html>

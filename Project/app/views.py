@@ -7,8 +7,11 @@ from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm  # assuming you have a ModelForm
 from django.views.generic import ListView
+from django.views.generic import DetailView
+from .models import Post
 
-class HomePageView(ListView):
+class HomePageView(ListView): 
+    #LIST VIEW=======================
     model = Post
     template_name = 'app/home.html'  # your template that shows all posts
     context_object_name = 'posts'  # this variable is used in template
@@ -20,6 +23,7 @@ def post_list(request):
 
 
 class PostCreateView(View):
+    #CREATE VIEW======================
     template_name = 'app/post_create.html'
 
     def get(self, request):
@@ -32,6 +36,19 @@ class PostCreateView(View):
             form.save()
             return redirect('/')  # redirect to home after creation
         return render(request, self.template_name, {'form': form})
+    
+
+
+class PostDetailView(DetailView):
+     model = Post
+     template_name = 'app/post_detail.html'  # specify your template
+     context_object_name = 'post'
+
+     def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add a print or log statement to ensure it's rendering the view correctly
+        print(f"Rendering Post Detail for: {context['post'].title}")  # Debugging line
+        return context
     
     # def post_create(request):
     #     if request.method == 'POST':
