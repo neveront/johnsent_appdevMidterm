@@ -4,16 +4,14 @@ from django.views import View
 from .forms import PostForm
 from .models import Post
 from django.shortcuts import render, redirect
-from .models import Post
 from .forms import PostForm  # assuming you have a ModelForm
 from django.views.generic import ListView
 from django.views.generic import DetailView 
-from .models import Post
 from django.shortcuts import render, get_list_or_404
-from .models import Post
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
-from .models import Post
+from django.views.generic import DeleteView
+
 
 class HomePageView(ListView): 
     #LIST VIEW=======================
@@ -66,6 +64,17 @@ class PostUpdateView(UpdateView):
     # After the form is successfully submitted, redirect to the updated post detail page
     def get_success_url(self):
         return reverse_lazy('post-detail', kwargs={'pk': self.object.pk})
+    
+
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = 'post_confirm_delete.html'  # Template we'll create for confirmation
+    context_object_name = 'post'
+
+    # After the post is successfully deleted, redirect to the homepage
+    success_url = reverse_lazy('home') 
+    
     
     # def post_create(request):
     #     if request.method == 'POST':
