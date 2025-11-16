@@ -9,6 +9,8 @@ from .forms import PostForm  # assuming you have a ModelForm
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from .models import Post
+from django.shortcuts import render, get_list_or_404
+from .models import Post
 
 class HomePageView(ListView): 
     #LIST VIEW=======================
