@@ -7,6 +7,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
             text-align: center;
             margin-top: 50px;
         }
@@ -43,6 +47,7 @@
     <div class="post-detail">
         <h1>{{ post.title }}</h1>
         <p>{{ post.content }}</p>
+        <a class="edit-btn" href="{% url 'post-update' pk=post.pk %}">Edit Post</a>
         <a class="back-btn" href="{% url 'home' %}">Back to All Posts</a>
 
     </div>

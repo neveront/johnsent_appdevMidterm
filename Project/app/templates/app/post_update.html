@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit {{ post.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .post-form {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px auto;
+            width: 50%;
+            text-align: left;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .post-form h1 {
+            color: #2c3e50;
+        }
+        .post-form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .post-form input, .post-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .post-form input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .post-form input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="post-form">
+        <h1>Edit Post</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Renders the form fields as paragraphs -->
+            <input type="submit" value="Update Post">
+        </form>
+        <a href="{% url 'post-detail' pk=post.pk %}">Cancel</a> <!-- Link to cancel the update and go back to the post details -->
+    </div>
+</body>
+</html>

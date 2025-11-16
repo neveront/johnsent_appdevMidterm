@@ -7,9 +7,12 @@ from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm  # assuming you have a ModelForm
 from django.views.generic import ListView
-from django.views.generic import DetailView
+from django.views.generic import DetailView 
 from .models import Post
 from django.shortcuts import render, get_list_or_404
+from .models import Post
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView
 from .models import Post
 
 class HomePageView(ListView): 
@@ -51,6 +54,18 @@ class PostDetailView(DetailView):
         # Add a print or log statement to ensure it's rendering the view correctly
         print(f"Rendering Post Detail for: {context['post'].title}")  # Debugging line
         return context
+     
+
+
+class PostUpdateView(UpdateView):
+    model = Post
+    fields = ['title', 'content']  # These are the fields that can be updated
+    template_name = 'app/post_update.html'  # The template we'll create
+    context_object_name = 'post'  # The variable used in the template
+
+    # After the form is successfully submitted, redirect to the updated post detail page
+    def get_success_url(self):
+        return reverse_lazy('post-detail', kwargs={'pk': self.object.pk})
     
     # def post_create(request):
     #     if request.method == 'POST':
